@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diamond Clean — Companie de Curățenie în Moldova</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Nunito', 'sans-serif'] },
+          colors: {
+            brand: {
+              50:  '#f0fdf4',
+              100: '#dcfce7',
+              200: '#bbf7d0',
+              500: '#22c55e',
+              600: '#16a34a',
+              700: '#15803d',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+
+    .faq-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .35s ease, padding .35s ease;
+    }
+    .faq-body.open { max-height: 240px; }
+
+    .tab-pill.active {
+      background: #22c55e;
+      color: white;
+      border-color: #22c55e;
+    }
+
+    /* floating WhatsApp button */
+    .wa-btn {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 999;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: #25d366;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(37,211,102,.45);
+      transition: transform .2s;
+    }
+    .wa-btn:hover { transform: scale(1.1); }
+
+    /* step connector line */
+    .step-line::after {
+      content: '';
+      position: absolute;
+      top: 28px;
+      right: -50%;
+      width: 100%;
+      height: 2px;
+      background: repeating-linear-gradient(90deg, #bbf7d0 0, #bbf7d0 8px, transparent 8px, transparent 16px);
+    }
+    @media (max-width: 768px) { .step-line::after { display: none; } }
+  </style>
+</head>
+<body class="font-sans text-gray-900 antialiased">
+
+<!-- ─────────────────────────────────────────
+     NAVIGATION
+───────────────────────────────────────── -->
+<header class="fixed top-0 inset-x-0 z-50 bg-white shadow-sm">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+
+    <!-- Logo -->
+    <a href="#" class="flex items-center gap-2 flex-shrink-0">
+      <div class="w-8 h-8 rounded-lg bg-brand-500 flex items-center justify-center">
+        <svg viewBox="0 0 24 24" fill="none" class="w-5 h-5">
+          <path d="M12 3L4 7.5V11c0 5 3.5 9.7 8 11 4.5-1.3 8-6 8-11V7.5L12 3z" fill="white"/>
+        </svg>
+      </div>
+      <span class="font-extrabold text-lg leading-none">Diamond<span class="text-brand-500">Clean</span></span>
+    </a>
+
+    <!-- Nav links -->
+    <nav class="hidden md:flex items-center gap-7 text-sm font-semibold text-gray-600">
+      <a href="#servicii"   class="hover:text-brand-600 transition-colors">Servicii</a>
+      <a href="#recenzii"   class="hover:text-brand-600 transition-colors">Recenzii</a>
+      <a href="#cum-lucram" class="hover:text-brand-600 transition-colors">Cum lucrăm</a>
+      <a href="#calculator" class="hover:text-brand-600 transition-colors">Calculator</a>
+    </nav>
+
+    <!-- CTA -->
+    <a href="#pret" class="bg-brand-500 hover:bg-brand-600 transition-colors text-white text-sm font-bold px-5 py-2.5 rounded-full shadow-sm shadow-brand-200">
+      Obțineți prețul
+    </a>
+  </div>
+</header>
+
+
+<!-- ─────────────────────────────────────────
+     HERO
+───────────────────────────────────────── -->
+<section class="pt-24 pb-10 bg-gradient-to-br from-brand-50 via-white to-white overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
+
+      <!-- Left content -->
+      <div class="flex-1 max-w-xl">
+        <!-- Badge -->
+        <div class="inline-flex items-center gap-2 bg-white border border-brand-200 rounded-full px-4 py-1.5 text-xs font-bold text-brand-700 mb-5 shadow-sm">
+          <span class="w-2 h-2 rounded-full bg-brand-500 animate-pulse"></span>
+          Activ pe rezervare
+        </div>
+
+        <h1 class="text-4xl lg:text-5xl font-black leading-tight text-gray-900 mb-5">
+          Companie de<br>
+          <span class="text-brand-500">curățenie</span><br>
+          în Moldova
+        </h1>
+
+        <p class="text-gray-500 text-sm leading-relaxed mb-7 max-w-md">
+          Realizăm orice tip de curățenie la domiciliu și în spații comerciale. Curățenie generală, după reparație, curățare chimică a mobilierului și alte tipuri — rapid, profesionist, garantat.
+        </p>
+
+        <!-- Stats row -->
+        <div class="flex flex-wrap gap-6 mb-8">
+          <div>
+            <div class="text-2xl font-black text-brand-500">1000+</div>
+            <div class="text-xs text-gray-500 font-medium">Clienți<br>mulțumiți</div>
+          </div>
+          <div class="w-px bg-gray-200"></div>
+          <div>
+            <div class="text-2xl font-black text-brand-500">7 ani</div>
+            <div class="text-xs text-gray-500 font-medium">Pe<br>piața</div>
+          </div>
+          <div class="w-px bg-gray-200"></div>
+          <div>
+            <div class="text-2xl font-black text-brand-500">Pro</div>
+            <div class="text-xs text-gray-500 font-medium">Echipă<br>profesionistă</div>
+          </div>
+          <div class="w-px bg-gray-200"></div>
+          <div>
+            <div class="text-2xl font-black text-brand-500">100%</div>
+            <div class="text-xs text-gray-500 font-medium">Garanție<br>rezultat</div>
+          </div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="flex flex-wrap gap-3">
+          <a href="#calculator"
+             class="bg-brand-500 hover:bg-brand-600 text-white font-bold px-6 py-3 rounded-full text-sm transition-colors shadow-lg shadow-brand-200">
+            CALCULAȚI PREȚUL →
+          </a>
+          <a href="tel:+37369022237"
+             class="border-2 border-gray-200 hover:border-brand-500 text-gray-700 font-bold px-6 py-3 rounded-full text-sm transition-colors">
+            Sunați-ne acum
+          </a>
+        </div>
+      </div>
+
+      <!-- Right image -->
+      <div class="flex-1 flex justify-center lg:justify-end relative">
+        <div class="relative w-full max-w-md">
+          <!-- decorative circle -->
+          <div class="absolute inset-6 rounded-full bg-brand-100 -z-10"></div>
+          <img
+            src="https://placehold.co/480x540/dcfce7/16a34a?text=Diamond+Clean"
+            alt="Specialist curățenie Diamond Clean"
+            class="relative w-full rounded-3xl shadow-xl object-cover"
+          />
+          <!-- floating card -->
+          <div class="absolute -bottom-5 -left-4 bg-white rounded-2xl shadow-2xl px-4 py-3 flex items-center gap-3 z-10">
+            <div class="w-10 h-10 rounded-xl bg-brand-100 flex items-center justify-center flex-shrink-0">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" class="w-5 h-5">
+                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </div>
+            <div>
+              <div class="text-[10px] text-gray-400 font-medium">Garanție</div>
+              <div class="text-sm font-extrabold text-gray-900">Calitate asigurată</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ─────────────────────────────────────────
+     SERVICE CARDS
+───────────────────────────────────────── -->
+<section id="servicii" class="py-8 bg-white border-b border-gray-100">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+
+      <!-- Card template (5 cards) -->
+      <a href="#" class="group flex flex-col items-center gap-3 p-4 rounded-2xl border border-gray-100 hover:border-brand-300 hover:shadow-md transition-all">
+        <div class="w-14 h-14 rounded-2xl bg-brand-50 group-hover:bg-brand-100 flex items-center justify-center transition-colors">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="1.5" class="w-7 h-7">
+            <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+          </svg>
+        </div>
+        <span class="text-xs font-bold text-gray-700 text-center leading-tight">Curățenie generală</span>
+      </a>
+
+      <a href="#" class="group flex flex-col items-center gap-3 p-4 rounded-2xl border border-gray-100 hover:border-brand-300 hover:shadow-md transition-all">
+        <div class="w-14 h-14 rounded-2xl bg-brand-50 group-hover:bg-brand-100 flex items-center justify-center transition-colors">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="1.5" class="w-7 h-7">
+            <path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+          </svg>
+        </div>
+        <span class="text-xs font-bold text-gray-700 text-center leading-tight">Curățenie după reparație</span>
+      </a>
+
+      <a href="#" class="group flex flex-col items-center gap-3 p-4 rounded-2xl border border-gray-100 hover:border-brand-300 hover:shadow-md transition-all">
+        <div class="w-14 h-14 rounded-2xl bg-brand-50 group-hover:bg-brand-100 flex items-center justify-center transition-colors">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="1.5" class="w-7 h-7">
+            <path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+          </svg>
+        </div>
+        <span class="text-xs font-bold text-gray-700 text-center leading-tight">Curățenie mobilă</span>
+      </a>
+
+      <a href="#" class="group flex flex-col items-center gap-3 p-4 rounded-2xl border border-gray-100 hover:border-brand-300 hover:shadow-md transition-all">
+        <div class="w-14 h-14 rounded-2xl bg-brand-50 group-hover:bg-brand-100 flex items-center justify-center transition-colors">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="1.5" class="w-7 h-7">
+            <path d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2"/>
+          </svg>
+        </div>
+        <span class="text-xs font-bold text-gray-700 text-center leading-tight">Spălarea geamurilor</span>
+      </a>
+
+      <a href="#" class="group flex flex-col items-center gap-3 p-4 rounded-2xl border border-gray-100 hover:border-brand-300 hover:shadow-md transition-all">
+        <div class="w-14 h-14 rounded-2xl bg-brand-50 group-hover:bg-brand-100 flex items-center justify-center transition-colors">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="1.5" class="w-7 h-7">
+            <path d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+          </svg>
+        </div>
+        <span class="text-xs font-bold text-gray-700 text-center leading-tight">Curățenie birouri</span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ─────────────────────────────────────────
+     SERVICES DETAIL
+───────────────────────────────────────── -->
+<section class="py-16 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="text-center mb-10">
+      <h2 class="text-2xl lg:text-3xl font-black text-gray-900 mb-2">
+        Curățenie profesională pentru<br>orice tip de nevoie
+      </h2>
+      <p class="text-gray-400 text-sm">Curățăm rapid și eficient pentru fiecare context</p>
+    </div>
+
+    <!-- Tabs -->
+    <div class="flex flex-wrap justify-center gap-2 mb-10" id="serviceTabs">
+      <button onclick="selectTab(0)" class="tab-pill active px-4 py-2 rounded-full text-sm font-bold border-2 border-gray-200 text-gray-600 transition-all">Curățenie de întreținere</button>
+      <button onclick="selectTab(1)" class="tab-pill px-4 py-2 rounded-full text-sm font-bold border-2 border-gray-200 text-gray-600 transition-all">Curățenie generală</button>
+      <button onclick="selectTab(2)" class="tab-pill px-4 py-2 rounded-full text-sm font-bold border-2 border-gray-200 text-gray-600 transition-all">Curățenie post-reparație</button>
+    </div>
+
+    <div class="flex flex-col lg:flex-row items-center gap-12">
+      <!-- Image -->
+      <div class="flex-1 w-full">
+        <img
+          src="https://placehold.co/560x400/dcfce7/16a34a?text=Curățenie+profesională"
+          alt="Curățenie profesională Diamond Clean"
+          class="rounded-2xl w-full shadow-lg"
+        />
+      </div>
+
+      <!-- Checklist -->
+      <div class="flex-1 max-w-lg">
+        <h3 id="serviceTitle" class="text-xl font-black text-gray-900 mb-6">Curățenie de întreținere</h3>
+        <ul id="serviceList" class="space-y-3 mb-8">
+          <li class="flex items-start gap-3">
+            <div class="w-5 h-5 rounded-full bg-brand-100 flex items-center justify-center mt-0.5 flex-shrink-0">
+              <svg viewBox="0 0 20 20" fill="#16a34a" class="w-3 h-3"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            </div>
+            <span class="text-gray-700 text-sm">Ștergerea prafului de pe suprafețe</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <div class="w-5 h-5 rounded-full bg-brand-100 flex items-center justify-center mt-0.5 flex-shrink-0">
+              <svg viewBox="0 0 20 20" fill="#16a34a" class="w-3 h-3"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            </div>
+            <span class="text-gray-700 text-sm">Aspirarea podelelor și covoarelor</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <div class="w-5 h-5 rounded-full bg-brand-100 flex items-center justify-center mt-0.5 flex-shrink-0">
+              <svg viewBox="0 0 20 20" fill="#16a34a" class="w-3 h-3"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            </div>
+            <span class="text-gray-700 text-sm">Curățarea bucătăriei și a băii</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <div class="w-5 h-5 rounded-full bg-brand-100 flex items-center justify-center mt-0.5 flex-shrink-0">
+              <svg viewBox="0 0 20 20" fill="#16a34a" class="w-3 h-3"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            </div>
+            <span class="text-gray-700 text-sm">Spălarea geamurilor interioare</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <div class="w-5 h-5 rounded-full bg-brand-100 flex items-center justify-center mt-0.5 flex-shrink-0">
+              <svg viewBox="0 0 20 20" fill="#16a34a" class="w-3 h-3"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            </div>
+            <span class="text-gray-700 text-sm">Scoaterea gunoiului și igienizarea coșurilor</span>
+          </li>
+        </ul>
+        <a href="#pret" class="inline-block bg-brand-500 hover:bg-brand-600 text-white font-bold px-6 py-3 rounded-full text-sm transition-colors">
+          Calculați prețul →
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─────────────────────────────────────────
+     GOOGLE REVIEWS
+───────────────────────────────────────── -->
+<section id="recenzii" class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="text-center mb-10">
+      <h2 class="text-2xl lg:text-3xl font-black text-gray-900 mb-3">
+        Recenzii: Compania de curățenie<br>Diamond Clean pe Google!
+      </h2>
+      <!-- Google badge -->
+      <div class="inline-flex items-center gap-2 mt-1">
+        <svg viewBox="0 0 24 24" class="w-5 h-5">
+          <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+          <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+          <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+          <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+        </svg>
+        <span class="text-gray-500 text-sm font-semibold">Google Reviews</span>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+
+      <!-- Review 1 -->
+      <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-full bg-brand-500 flex items-center justify-center text-white font-black text-sm flex-shrink-0">LG</div>
+          <div>
+            <div class="font-bold text-sm text-gray-900">Larisa Grigorescu</div>
+            <div class="flex gap-0.5 mt-0.5">
+              <svg viewBox="0 0 20 20" fill="#f59e0b" class="w-3.5 h-3.5"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg viewBox="0 0 20 20" fill="#f59e0b" class="w-3.5 h-3.5"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg viewBox="0 0 20 20" fill="#f59e0b" class="w-3.5 h-3.5"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg viewBox="0 0 20 20" fill="#f59e0b" class="w-3.5 h-3.5"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg viewBox="0 0 20 20" fill="#f59e0b" class="w-3.5 h-3.5"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            </div>
+          </div>
+        </div>
+        <p class="text-gray-600 text-sm leading-relaxed">"Servicii excelente! Echipa Diamond Clean a venit la timp, a lucrat profesionist și apartamentul meu arată impecabil. Recomand cu toată inima!"</p>
+      </div>
+
+      <!-- Review 2 -->
+      <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center text-white font-black text-sm flex-shrink-0">IM</div>
+          <div>
+            <div class="font-bold text-sm text-gray-900">Ion Munteanu</div>
+            <div class="flex gap-0.5 mt-0.5">
+              <svg viewBox="0 0 20 20" fill="#f59e0b" class="w-3.5 h-3.5"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg viewBox="0 0 20 20" fill="#f59e0b" class="w-3.5 h-3.5"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg viewBox="0 0 20 20" fill="#f59e0b" class="w-3.5 h-3.5"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg viewBox="0 0 20 20" fill="#f59e0b" class="w-3.5 h-3.5"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg viewBox="0 0 20 20" fill="#f59e0b" class="w-3.5 h-3.5"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            </div>
+          </div>
+        </div>
+        <p class="text-gray-600 text-sm leading-relaxed">"Am comandat curățenie după reparație și sunt foarte mulțumit. Prețul a fost corect, echipa a lucrat rapid și eficient. Voi apela din nou!"</p>
+      </div>
+
+      <!-- Review 3 -->
+      <div class="bg-gray-50 rounded-2xl p-6 border border-gray-100">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-white font-black text-sm flex-shrink-0">PK</div>
+          <div>
+            <div class="font-bold text-sm text-gray-900">Pavel Kirilov</div>
+            <div class="flex gap-0.5 mt-0.5">
+              <svg viewBox="0 0 20 20" fill="#f59e0b" class="w-3.5 h-3.5"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg viewBox="0 0 20 20" fill="#f59e0b" class="w-3.5 h-3.5"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg viewBox="0 0 20 20" fill="#f59e0b" class="w-3.5 h-3.5"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg viewBox="0 0 20 20" fill="#f59e0b" class="w-3.5 h-3.5"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg viewBox="0 0 20 20" fill="#f59e0b" class="w-3.5 h-3.5"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            </div>
+          </div>
+        </div>
+        <p class="text-gray-600 text-sm leading-relaxed">"Recomand Diamond Clean tuturor! Serviciu de calitate înaltă la un preț accesibil. Curățenia chimică a canapelei a arătat ca nouă. 5 stele!"</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ─────────────────────────────────────────
+     CALCULATOR CTA
+───────────────────────────────────────── -->
+<section id="calculator" class="py-16 bg-brand-600 relative overflow-hidden">
+  <!-- decorative blobs -->
+  <div class="absolute top-0 right-0 w-80 h-80 rounded-full bg-brand-500 opacity-30 translate-x-1/3 -translate-y-1/3 pointer-events-none"></div>
+  <div class="absolute bottom-0 left-0 w-56 h-56 rounded-full bg-brand-700 opacity-30 -translate-x-1/3 translate-y-1/3 pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+    <div class="flex flex-col lg:flex-row items-center gap-12">
+
+      <!-- Image -->
+      <div class="flex-1 w-full">
+        <img
+          src="https://placehold.co/520x380/bbf7d0/15803d?text=Calculați+acum"
+          alt="Calculator curățenie"
+          class="rounded-2xl w-full max-w-md mx-auto shadow-2xl"
+        />
+      </div>
+
+      <!-- Text -->
+      <div class="flex-1 text-white">
+        <h2 class="text-3xl font-black leading-tight mb-4">
+          Calculează costul<br>
+          <span class="text-brand-200">curățeniei în 60 de secunde</span>
+        </h2>
+        <p class="text-brand-100 text-sm mb-2">Răspundeți la 5 întrebări și primiți un răspuns în câteva minute</p>
+        <p class="text-brand-200 text-xs mb-8">• Fără obligații &nbsp;• Răspuns rapid &nbsp;• Preț corect</p>
+        <a href="#pret" class="inline-block bg-white text-brand-600 font-black px-8 py-4 rounded-full hover:bg-brand-50 transition-colors text-sm shadow-lg">
+          Începeți calculul →
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ─────────────────────────────────────────
+     HOW WE WORK
+───────────────────────────────────────── -->
+<section id="cum-lucram" class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="text-center mb-12">
+      <h2 class="text-2xl lg:text-3xl font-black text-gray-900 mb-2">Cum lucrăm?</h2>
+      <p class="text-gray-400 text-sm">4 pași până la o curățenie impecabilă</p>
+    </div>
+
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
+
+      <!-- Step 1 -->
+      <div class="relative flex flex-col items-center text-center step-line">
+        <div class="relative mb-4">
+          <div class="w-16 h-16 rounded-2xl bg-brand-50 flex items-center justify-center">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="1.5" class="w-8 h-8">
+              <path d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/>
+            </svg>
+          </div>
+          <div class="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-brand-500 text-white text-xs font-black flex items-center justify-center">1</div>
+        </div>
+        <h3 class="font-bold text-gray-900 text-sm mb-1">Lăsați o solicitare</h3>
+        <p class="text-gray-400 text-xs leading-relaxed">Completați formularul sau sunați-ne direct</p>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="relative flex flex-col items-center text-center step-line">
+        <div class="relative mb-4">
+          <div class="w-16 h-16 rounded-2xl bg-brand-50 flex items-center justify-center">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="1.5" class="w-8 h-8">
+              <path d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+            </svg>
+          </div>
+          <div class="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-brand-500 text-white text-xs font-black flex items-center justify-center">2</div>
+        </div>
+        <h3 class="font-bold text-gray-900 text-sm mb-1">Primiți calculul prețului</h3>
+        <p class="text-gray-400 text-xs leading-relaxed">Calculăm costul exact al serviciului</p>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="relative flex flex-col items-center text-center step-line">
+        <div class="relative mb-4">
+          <div class="w-16 h-16 rounded-2xl bg-brand-50 flex items-center justify-center">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="1.5" class="w-8 h-8">
+              <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+              <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+          </div>
+          <div class="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-brand-500 text-white text-xs font-black flex items-center justify-center">3</div>
+        </div>
+        <h3 class="font-bold text-gray-900 text-sm mb-1">Venim la domiciliu</h3>
+        <p class="text-gray-400 text-xs leading-relaxed">Echipa noastră ajunge la adresa dvs.</p>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="relative flex flex-col items-center text-center">
+        <div class="relative mb-4">
+          <div class="w-16 h-16 rounded-2xl bg-brand-50 flex items-center justify-center">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="1.5" class="w-8 h-8">
+              <path d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
+            </svg>
+          </div>
+          <div class="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-brand-500 text-white text-xs font-black flex items-center justify-center">4</div>
+        </div>
+        <h3 class="font-bold text-gray-900 text-sm mb-1">Curățenie impecabilă</h3>
+        <p class="text-gray-400 text-xs leading-relaxed">Rezultat garantat, 100% satisfacție</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ─────────────────────────────────────────
+     ABOUT COMPANY
+───────────────────────────────────────── -->
+<section class="py-16 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-4xl">
+      <h2 class="text-2xl lg:text-3xl font-black text-gray-900 mb-6">
+        Companie de curățenie profesională în Moldova<br>
+        pentru apartamente, case și birouri
+      </h2>
+      <div class="space-y-4 text-gray-600 text-sm leading-loose">
+        <p>Diamond Clean oferă servicii profesionale de curățenie în Republica Moldova cu echipamente de ultimă generație și produse ecologice certificate. Realizăm curățenie generală, curățenie după reparație, curățare chimică a mobilierului și alte tipuri de curățenie pentru birouri.</p>
+        <p>Echipa noastră utilizează eficient echipamente și soluții sigure pentru curățenie, protejând sănătatea dumneavoastră și a familiei. Lucrăm cu apartamente, case, birouri, magazine și alte tipuri de spații comerciale și rezidențiale.</p>
+        <p>Curățenia generală este o curățenie profundă a spațiului. Dacă sunteți în căutare de o companie profesionistă pentru curățenie în Moldova, ați ajuns la locul potrivit. Efectuăm curățenie chimică pentru canapele, saltele, fotolii și alte tipuri de mobilier tapițat.</p>
+        <p>Diamond Clean deservește deja peste 1000 de clienți și am construit un sistem eficient de curățenie. Puteți comanda curățenie pentru apartament, casă sau birou și în câteva minute primiți o estimație a costului direct pe site.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─────────────────────────────────────────
+     FAQ
+───────────────────────────────────────── -->
+<section class="py-16 bg-white">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <h2 class="text-2xl lg:text-3xl font-black text-gray-900 mb-8 text-center">Întrebări frecvente</h2>
+
+    <div class="space-y-3" id="faqContainer">
+
+      <!-- Q1 -->
+      <div class="border border-gray-200 rounded-2xl overflow-hidden">
+        <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-5 text-left hover:bg-gray-50 transition-colors">
+          <span class="font-bold text-gray-900 text-sm pr-4">De ce depind prețurile pentru cleaning în Moldova?</span>
+          <div class="faq-icon w-6 h-6 rounded-full bg-brand-500 flex items-center justify-center flex-shrink-0 transition-transform">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" class="w-3 h-3"><path d="M12 5v14M5 12h14"/></svg>
+          </div>
+        </button>
+        <div class="faq-body">
+          <p class="text-gray-500 text-sm leading-relaxed px-5 pb-5">Prețul depinde de suprafața spațiului, tipul curățeniei necesare, numărul de camere și gradul de murdărie. Completați formularul nostru pentru a obține un calcul exact în câteva minute.</p>
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="border border-gray-200 rounded-2xl overflow-hidden">
+        <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-5 text-left hover:bg-gray-50 transition-colors">
+          <span class="font-bold text-gray-900 text-sm pr-4">Este posibil să închei un contract pentru curățarea periodică? Vă fi o reducere?</span>
+          <div class="faq-icon w-6 h-6 rounded-full bg-brand-500 flex items-center justify-center flex-shrink-0 transition-transform">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" class="w-3 h-3"><path d="M12 5v14M5 12h14"/></svg>
+          </div>
+        </button>
+        <div class="faq-body">
+          <p class="text-gray-500 text-sm leading-relaxed px-5 pb-5">Da, oferim contracte de curățenie periodică la prețuri avantajoase. Clienții cu abonament beneficiază de prioritate la programări și reduceri de 10–20%. Contactați-ne pentru detalii.</p>
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="border border-gray-200 rounded-2xl overflow-hidden">
+        <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-5 text-left hover:bg-gray-50 transition-colors">
+          <span class="font-bold text-gray-900 text-sm pr-4">Ce nu este inclus în prețul curățeniei?</span>
+          <div class="faq-icon w-6 h-6 rounded-full bg-brand-500 flex items-center justify-center flex-shrink-0 transition-transform">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" class="w-3 h-3"><path d="M12 5v14M5 12h14"/></svg>
+          </div>
+        </button>
+        <div class="faq-body">
+          <p class="text-gray-500 text-sm leading-relaxed px-5 pb-5">Prețul de bază nu include curățarea geamurilor exterioare la etaje înalte, spălarea draperiilor și a perdelelor. Aceste servicii pot fi adăugate la cerere contra cost suplimentar.</p>
+        </div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="border border-gray-200 rounded-2xl overflow-hidden">
+        <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-5 text-left hover:bg-gray-50 transition-colors">
+          <span class="font-bold text-gray-900 text-sm pr-4">Dacă angajații dvs. au deteriorat ceva, cine este responsabil?</span>
+          <div class="faq-icon w-6 h-6 rounded-full bg-brand-500 flex items-center justify-center flex-shrink-0 transition-transform">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" class="w-3 h-3"><path d="M12 5v14M5 12h14"/></svg>
+          </div>
+        </button>
+        <div class="faq-body">
+          <p class="text-gray-500 text-sm leading-relaxed px-5 pb-5">Echipa noastră este asigurată. În cazul deteriorării accidentale a bunurilor dumneavoastră, compania noastră va acoperi integral costurile de reparație sau înlocuire.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ─────────────────────────────────────────
+     PRICE FORM
+───────────────────────────────────────── -->
+<section id="pret" class="py-16 bg-gray-50">
+  <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="text-center mb-8">
+      <h2 class="text-2xl lg:text-3xl font-black text-gray-900 mb-2">Află prețul curățeniei în 1 minut</h2>
+      <p class="text-gray-400 text-sm">Completați formularul și primiți calculul gratuit</p>
+    </div>
+
+    <div class="bg-white rounded-3xl shadow-xl p-8">
+      <form class="space-y-4" onsubmit="handleForm(event)">
+
+        <!-- Name -->
+        <input
+          type="text"
+          placeholder="Nume"
+          required
+          class="w-full border border-gray-200 rounded-xl px-4 py-3.5 text-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-300 focus:border-transparent transition-all"
+        />
+
+        <!-- Phone -->
+        <div class="flex gap-2">
+          <div class="flex items-center gap-1.5 border border-gray-200 rounded-xl px-3 py-3.5 text-sm text-gray-700 bg-gray-50 flex-shrink-0 select-none">
+            <span>🇲🇩</span><span class="font-semibold">+373</span>
+          </div>
+          <input
+            type="tel"
+            placeholder="069 000 000"
+            required
+            class="flex-1 border border-gray-200 rounded-xl px-4 py-3.5 text-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-300 focus:border-transparent transition-all"
+          />
+        </div>
+
+        <!-- Service Type -->
+        <div class="relative">
+          <select required class="w-full border border-gray-200 rounded-xl px-4 py-3.5 text-sm text-gray-500 focus:outline-none focus:ring-2 focus:ring-brand-300 focus:border-transparent transition-all appearance-none bg-white pr-10">
+            <option value="" disabled selected>Tip Curățenie</option>
+            <option>Curățenie generală</option>
+            <option>Curățenie după reparație</option>
+            <option>Curățenie mobilă</option>
+            <option>Spălarea geamurilor</option>
+            <option>Curățenie birouri</option>
+          </select>
+          <svg viewBox="0 0 20 20" fill="#9ca3af" class="w-4 h-4 absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
+            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
+          </svg>
+        </div>
+
+        <!-- Area slider -->
+        <div>
+          <div class="flex justify-between items-center mb-2">
+            <label class="text-xs font-bold text-gray-500">Suprafața apartamentului</label>
+            <span class="text-sm font-black text-brand-600" id="areaDisplay">60 m²</span>
+          </div>
+          <input
+            type="range" min="20" max="300" value="60"
+            id="areaSlider"
+            oninput="document.getElementById('areaDisplay').textContent = this.value + ' m²'"
+            class="w-full accent-brand-500 h-2 rounded-full"
+          />
+          <div class="flex justify-between text-xs text-gray-400 mt-1">
+            <span>20 m²</span><span>300 m²</span>
+          </div>
+        </div>
+
+        <!-- Submit -->
+        <button type="submit" class="w-full bg-brand-500 hover:bg-brand-600 transition-colors text-white font-black py-4 rounded-xl text-sm tracking-wide shadow-lg shadow-brand-200 mt-2">
+          PRIMEȘTI PREȚUL →
+        </button>
+
+        <p class="text-center text-xs text-gray-400">Prin trimiterea formularului, sunteți de acord cu politica de confidențialitate</p>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ─────────────────────────────────────────
+     FOOTER / CONTACT
+───────────────────────────────────────── -->
+<footer id="contact" class="bg-gray-900 py-12">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center">
+
+    <!-- Logo -->
+    <div class="flex items-center gap-2 mb-6">
+      <div class="w-8 h-8 rounded-lg bg-brand-500 flex items-center justify-center">
+        <svg viewBox="0 0 24 24" fill="none" class="w-5 h-5">
+          <path d="M12 3L4 7.5V11c0 5 3.5 9.7 8 11 4.5-1.3 8-6 8-11V7.5L12 3z" fill="white"/>
+        </svg>
+      </div>
+      <span class="font-extrabold text-lg text-white leading-none">Diamond<span class="text-brand-400">Clean</span></span>
+    </div>
+
+    <!-- Contacts -->
+    <div class="flex flex-col sm:flex-row gap-6 mb-8">
+      <a href="tel:+37369022237" class="flex items-center gap-2 text-gray-300 hover:text-white transition-colors text-sm font-semibold">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-4 h-4 flex-shrink-0">
+          <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+        </svg>
+        0690 222 37
+      </a>
+      <a href="mailto:info@diamond-clean.md" class="flex items-center gap-2 text-gray-300 hover:text-white transition-colors text-sm font-semibold">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-4 h-4 flex-shrink-0">
+          <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+        </svg>
+        info@diamond-clean.md
+      </a>
+    </div>
+
+    <!-- Social -->
+    <div class="flex items-center gap-3 mb-8">
+      <a href="#" aria-label="Instagram" class="w-10 h-10 rounded-full bg-gray-800 hover:bg-brand-600 flex items-center justify-center transition-colors">
+        <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 text-white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      </a>
+      <a href="#" aria-label="Facebook" class="w-10 h-10 rounded-full bg-gray-800 hover:bg-brand-600 flex items-center justify-center transition-colors">
+        <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 text-white"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      </a>
+      <a href="#" aria-label="TikTok" class="w-10 h-10 rounded-full bg-gray-800 hover:bg-brand-600 flex items-center justify-center transition-colors">
+        <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 text-white"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+      </a>
+      <a href="#" aria-label="YouTube" class="w-10 h-10 rounded-full bg-gray-800 hover:bg-brand-600 flex items-center justify-center transition-colors">
+        <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 text-white"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      </a>
+      <a href="#" aria-label="WhatsApp" class="w-10 h-10 rounded-full bg-gray-800 hover:bg-brand-600 flex items-center justify-center transition-colors">
+        <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 text-white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      </a>
+      <a href="#" aria-label="Viber" class="w-10 h-10 rounded-full bg-gray-800 hover:bg-brand-600 flex items-center justify-center transition-colors">
+        <svg viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 text-white"><path d="M11.4 0C5.6 0 1 4.6 1 10.4c0 3.1 1.3 5.9 3.4 7.9v4.2l4-1.3c1 .3 2 .4 3 .4 5.8 0 10.4-4.6 10.4-10.4S17.2 0 11.4 0zm1 14.9s-.3-.1-.5-.1c-.2 0-.4.1-.5.1-3.2-1.7-5.1-3.5-6-6.2v-.1c0-.2.1-.3.1-.5s-.1-.3-.1-.5v-.3c.3-.9 1.2-1.5 2-1.5.1 0 .2 0 .3.1.9.5 1.7 2 1.8 2.2v.1c0 .5-.5 1-1 1.3.6 1.5 1.8 2.7 3.3 3.3.3-.5.8-1 1.3-1h.1c.3.1 1.7.9 2.2 1.8 0 .1.1.2.1.3 0 .8-.6 1.7-1.5 2-.1-.1-.4 0-.6 0z"/></svg>
+      </a>
+    </div>
+
+    <p class="text-gray-600 text-xs">© 2024 Diamond Clean. Toate drepturile rezervate.</p>
+  </div>
+</footer>
+
+
+<!-- Floating WhatsApp -->
+<a href="https://wa.me/37369022237" target="_blank" rel="noopener" aria-label="WhatsApp" class="wa-btn">
+  <svg viewBox="0 0 24 24" fill="white" class="w-6 h-6"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+
+<!-- ─────────────────────────────────────────
+     SCRIPTS
+───────────────────────────────────────── -->
+<script>
+  // ── Service tab switcher ──
+  const tabData = [
+    {
+      title: 'Curățenie de întreținere',
+      items: [
+        'Ștergerea prafului de pe toate suprafețele',
+        'Aspirarea podelelor și covoarelor',
+        'Curățarea bucătăriei și a băii',
+        'Spălarea geamurilor interioare',
+        'Scoaterea gunoiului și igienizarea coșurilor',
+      ]
+    },
+    {
+      title: 'Curățenie generală',
+      items: [
+        'Curățare profundă a tuturor camerelor',
+        'Curățarea mobilierului și a tapițeriei',
+        'Degresarea și dezinfectarea bucătăriei',
+        'Curățarea băii cu produse profesionale',
+        'Curățarea balconului și a logiei',
+      ]
+    },
+    {
+      title: 'Curățenie post-reparație',
+      items: [
+        'Îndepărtarea resturilor de construcție',
+        'Curățarea vopselelor și a adezivilor',
+        'Spălarea geamurilor și a ușilor noi',
+        'Curățarea podelelor după montaj',
+        'Lustruirea suprafețelor și parchetului',
+      ]
+    }
+  ];
+
+  function selectTab(index) {
+    const tabs = document.querySelectorAll('.tab-pill');
+    tabs.forEach((t, i) => {
+      t.classList.toggle('active', i === index);
+    });
+    const data = tabData[index];
+    document.getElementById('serviceTitle').textContent = data.title;
+    const list = document.getElementById('serviceList');
+    list.innerHTML = data.items.map(item => `
+      <li class="flex items-start gap-3">
+        <div class="w-5 h-5 rounded-full bg-brand-100 flex items-center justify-center mt-0.5 flex-shrink-0">
+          <svg viewBox="0 0 20 20" fill="#16a34a" class="w-3 h-3"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+        </div>
+        <span class="text-gray-700 text-sm">${item}</span>
+      </li>
+    `).join('');
+  }
+
+  // ── FAQ accordion ──
+  function toggleFaq(btn) {
+    const item = btn.closest('div.border');
+    const body = item.querySelector('.faq-body');
+    const icon = btn.querySelector('.faq-icon');
+    const isOpen = body.classList.contains('open');
+
+    // close all
+    document.querySelectorAll('.faq-body').forEach(b => b.classList.remove('open'));
+    document.querySelectorAll('.faq-icon').forEach(i => {
+      i.querySelector('svg path').setAttribute('d', 'M12 5v14M5 12h14');
+    });
+
+    if (!isOpen) {
+      body.classList.add('open');
+      icon.querySelector('svg path').setAttribute('d', 'M5 12h14');
+    }
+  }
+
+  // ── Form handler ──
+  function handleForm(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('button[type=submit]');
+    btn.textContent = 'Vă mulțumim! Vă contactăm în curând.';
+    btn.classList.replace('bg-brand-500', 'bg-gray-400');
+    btn.disabled = true;
+  }
+
+  // ── Smooth scroll for all anchor links ──
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
