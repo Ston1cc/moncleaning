@@ -6,6 +6,7 @@
   <title>Diamond Clean Companie de Curățenie în Moldova</title>
   <link rel="icon" type="image/jpeg" href="img/logo.jpeg" />
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
@@ -871,6 +872,11 @@
     }
   }
 
+  // ── EmailJS config — replace with your real credentials ──
+  const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';
+  const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
+  const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';
+
   // ── Form handler ──
   function handleForm(e) {
     e.preventDefault();
@@ -885,8 +891,17 @@
                 + String(today.getMonth()+1).padStart(2,'0') + '.'
                 + today.getFullYear();
 
-    const msg = `Cerere nouă de pe site! 🧹\n👤 Nume: ${name}\n📞 Telefon: +373 ${phone}\n🧽 Serviciu: ${service}\n📐 Suprafață: ${area} m²\n📅 Data: ${date}`;
+    // 1️⃣ Auto-email to owner (silent, no client action needed)
+    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+      client_name:    name,
+      client_phone:   '+373 ' + phone,
+      client_service: service,
+      client_area:    area + ' m²',
+      client_date:    date
+    }, EMAILJS_PUBLIC_KEY).catch(err => console.error('EmailJS error:', err));
 
+    // 2️⃣ Open WhatsApp with pre-filled message (client taps Send)
+    const msg = `Cerere nouă de pe site! 🧹\n👤 Nume: ${name}\n📞 Telefon: +373 ${phone}\n🧽 Serviciu: ${service}\n📐 Suprafață: ${area} m²\n📅 Data: ${date}`;
     window.open('https://wa.me/37368144622?text=' + encodeURIComponent(msg), '_blank');
 
     e.target.reset();
