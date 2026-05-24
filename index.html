@@ -661,6 +661,7 @@
 
         <!-- Name -->
         <input
+          id="formName"
           type="text"
           placeholder="Nume"
           required
@@ -673,6 +674,7 @@
             <span>🇲🇩</span><span class="font-semibold">+373</span>
           </div>
           <input
+            id="formPhone"
             type="tel"
             placeholder="069 000 000"
             required
@@ -682,7 +684,7 @@
 
         <!-- Service Type -->
         <div class="relative">
-          <select required class="w-full border border-gray-200 rounded-xl px-4 py-3.5 text-sm text-gray-500 focus:outline-none focus:ring-2 focus:ring-brand-300 focus:border-transparent transition-all appearance-none bg-white pr-10">
+          <select id="formService" required class="w-full border border-gray-200 rounded-xl px-4 py-3.5 text-sm text-gray-500 focus:outline-none focus:ring-2 focus:ring-brand-300 focus:border-transparent transition-all appearance-none bg-white pr-10">
             <option value="" disabled selected>Tip Curățenie</option>
             <option>Curățenie generală</option>
             <option>Curățenie după reparație</option>
@@ -872,6 +874,21 @@
   // ── Form handler ──
   function handleForm(e) {
     e.preventDefault();
+
+    const name    = document.getElementById('formName').value.trim();
+    const phone   = document.getElementById('formPhone').value.trim();
+    const service = document.getElementById('formService').value;
+    const area    = document.getElementById('areaSlider').value;
+
+    const today = new Date();
+    const date  = String(today.getDate()).padStart(2,'0') + '.'
+                + String(today.getMonth()+1).padStart(2,'0') + '.'
+                + today.getFullYear();
+
+    const msg = `Cerere nouă de pe site! 🧹\n👤 Nume: ${name}\n📞 Telefon: +373 ${phone}\n🧽 Serviciu: ${service}\n📐 Suprafață: ${area} m²\n📅 Data: ${date}`;
+
+    window.open('https://wa.me/37368144622?text=' + encodeURIComponent(msg), '_blank');
+
     e.target.reset();
     document.getElementById('areaDisplay').textContent = '60 m²';
     document.getElementById('areaSlider').value = 60;
