@@ -892,12 +892,9 @@
                 + today.getFullYear();
 
     // 1️⃣ Auto-email to owner (silent, no client action needed)
+    const emailMsg = `Cerere noua de pe site!\n\nNume: ${name}\nTelefon: +373 ${phone}\nServiciu: ${service}\nSuprafata: ${area} m2\nData: ${date}`;
     emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-      client_name:    name,
-      client_phone:   '+373 ' + phone,
-      client_service: service,
-      client_area:    area + ' m2',
-      client_date:    date
+      message: emailMsg
     }, EMAILJS_PUBLIC_KEY).catch(err => console.error('EmailJS error:', err));
 
     // 2️⃣ Open WhatsApp with pre-filled message (client taps Send)
