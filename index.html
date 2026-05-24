@@ -818,6 +818,19 @@
           </div>
         </div>
 
+        <!-- Date -->
+        <div class="relative">
+          <label class="text-xs font-bold text-gray-500 block mb-1.5">Data dorită pentru serviciu</label>
+          <input
+            id="formDate"
+            type="date"
+            required
+            class="w-full border border-gray-200 rounded-xl px-4 py-3.5 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-brand-300 focus:border-transparent transition-all"
+            onmouseenter="if(!this.min){this.min=new Date().toISOString().split('T')[0]}"
+          />
+          <script>document.getElementById('formDate').min = new Date().toISOString().split('T')[0];</script>
+        </div>
+
         <!-- Submit -->
         <button type="submit" class="w-full bg-brand-500 hover:bg-brand-600 transition-colors text-white font-black py-4 rounded-xl text-sm tracking-wide shadow-lg shadow-brand-200 mt-2">
           PRIMEȘTI PREȚUL →
@@ -989,10 +1002,9 @@
     const service = document.getElementById('formService').value;
     const area    = document.getElementById('areaSlider').value;
 
-    const today = new Date();
-    const date  = String(today.getDate()).padStart(2,'0') + '.'
-                + String(today.getMonth()+1).padStart(2,'0') + '.'
-                + today.getFullYear();
+    const rawDate = document.getElementById('formDate').value; // yyyy-mm-dd
+    const [y, m, d] = rawDate.split('-');
+    const date = `${d}.${m}.${y}`;
 
     // 1️⃣ Auto-email to owner (silent, no client action needed)
     const emailMsg = `Cerere noua de pe site!\n\nNume: ${name}\nTelefon: +373 ${phone}\nServiciu: ${service}\nSuprafata: ${area} m2\nData: ${date}`;
