@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mon Cleaning Companie de Curățenie în Moldova</title>
-  <link rel="icon" type="image/jpeg" href="img/mon-cleaning-logo.jpg" />
+  <link rel="icon" type="image/jpeg" href="img/logo.jpg" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script defer src="/_vercel/insights/script.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
@@ -224,6 +224,57 @@
       box-shadow: 0 16px 44px rgba(8,59,74,.08);
     }
 
+    .section-sheen {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .section-sheen::before {
+      content: '';
+      position: absolute;
+      inset: -30% -10% auto;
+      height: 320px;
+      background: radial-gradient(circle at 30% 40%, rgba(98,199,228,.2), transparent 60%);
+      pointer-events: none;
+    }
+
+    .lift-card {
+      border: 1px solid rgba(98,199,228,.2);
+      background: rgba(255,255,255,.86);
+      box-shadow: 0 18px 42px rgba(8,59,74,.08);
+      transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease;
+    }
+
+    .lift-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 26px 56px rgba(8,59,74,.14);
+      border-color: rgba(48,172,207,.42);
+    }
+
+    .proof-card {
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid rgba(98,199,228,.24);
+      background: white;
+      box-shadow: 0 18px 44px rgba(8,59,74,.1);
+    }
+
+    .proof-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .proof-full {
+      background: #f8fcfd;
+    }
+
+    .proof-full img {
+      object-fit: contain;
+      background: #f8fcfd;
+    }
+
     @media (max-width: 1024px) {
       .hero-clean {
         min-height: auto;
@@ -349,7 +400,7 @@
 
     <!-- Logo -->
     <a href="#" class="flex items-center gap-1 flex-shrink-0">
-      <img src="img/mon-cleaning-logo.jpg" alt="Mon Cleaning" class="h-11 w-11 rounded-full object-cover" />
+      <img src="img/logo.jpg" alt="Mon Cleaning" class="h-11 w-11 rounded-xl object-contain bg-white p-1 border border-brand-100" />
       <span class="brand-word text-lg leading-none ml-1">Mon<span class="text-brand-500"> Cleaning</span></span>
     </a>
 
@@ -429,7 +480,7 @@
         </svg>
 
         <div class="hero-logo-medallion">
-          <img src="img/mon-cleaning-logo.jpg" alt="Mon Cleaning" />
+          <img src="img/logo.jpg" alt="Specialist Mon Cleaning" />
         </div>
 
         <div class="service-ticket p-5 sm:p-6">
@@ -465,12 +516,12 @@
 <!-- ─────────────────────────────────────────
      SERVICE CARDS
 ───────────────────────────────────────── -->
-<section id="servicii" class="py-8 bg-white border-b border-gray-100">
+<section id="servicii" class="py-10 bg-white border-b border-brand-100 section-sheen">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
 
       <!-- Card template (5 cards) -->
-      <a href="#" class="reveal reveal-delay-1 group flex flex-col items-center gap-3 p-4 rounded-2xl border border-gray-100 hover:border-brand-300 hover:shadow-md transition-all">
+      <a href="#" class="reveal reveal-delay-1 lift-card group flex flex-col items-center gap-3 p-4 rounded-2xl transition-all">
         <div class="w-14 h-14 rounded-2xl bg-brand-50 group-hover:bg-brand-100 flex items-center justify-center transition-colors">
           <svg viewBox="0 0 24 24" fill="none" stroke="#30accf" stroke-width="1.5" class="w-7 h-7">
             <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
@@ -479,7 +530,7 @@
         <span class="text-xs font-bold text-gray-700 text-center leading-tight">Curățenie generală</span>
       </a>
 
-      <a href="#" class="reveal reveal-delay-2 group flex flex-col items-center gap-3 p-4 rounded-2xl border border-gray-100 hover:border-brand-300 hover:shadow-md transition-all">
+      <a href="#" class="reveal reveal-delay-2 lift-card group flex flex-col items-center gap-3 p-4 rounded-2xl transition-all">
         <div class="w-14 h-14 rounded-2xl bg-brand-50 group-hover:bg-brand-100 flex items-center justify-center transition-colors">
           <svg viewBox="0 0 24 24" fill="none" stroke="#30accf" stroke-width="1.5" class="w-7 h-7">
             <path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
@@ -488,7 +539,7 @@
         <span class="text-xs font-bold text-gray-700 text-center leading-tight">Curățenie după reparație</span>
       </a>
 
-      <a href="#" class="reveal reveal-delay-3 group flex flex-col items-center gap-3 p-4 rounded-2xl border border-gray-100 hover:border-brand-300 hover:shadow-md transition-all">
+      <a href="#" class="reveal reveal-delay-3 lift-card group flex flex-col items-center gap-3 p-4 rounded-2xl transition-all">
         <div class="w-14 h-14 rounded-2xl bg-brand-50 group-hover:bg-brand-100 flex items-center justify-center transition-colors">
           <svg viewBox="0 0 24 24" fill="none" stroke="#30accf" stroke-width="1.5" class="w-7 h-7">
             <path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
@@ -497,7 +548,7 @@
         <span class="text-xs font-bold text-gray-700 text-center leading-tight">Curățenie mobilă</span>
       </a>
 
-      <a href="#" class="reveal reveal-delay-4 group flex flex-col items-center gap-3 p-4 rounded-2xl border border-gray-100 hover:border-brand-300 hover:shadow-md transition-all">
+      <a href="#" class="reveal reveal-delay-4 lift-card group flex flex-col items-center gap-3 p-4 rounded-2xl transition-all">
         <div class="w-14 h-14 rounded-2xl bg-brand-50 group-hover:bg-brand-100 flex items-center justify-center transition-colors">
           <svg viewBox="0 0 24 24" fill="none" stroke="#30accf" stroke-width="1.5" class="w-7 h-7">
             <path d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2"/>
@@ -506,7 +557,7 @@
         <span class="text-xs font-bold text-gray-700 text-center leading-tight">Spălarea geamurilor</span>
       </a>
 
-      <a href="#" class="reveal reveal-delay-4 group flex flex-col items-center gap-3 p-4 rounded-2xl border border-gray-100 hover:border-brand-300 hover:shadow-md transition-all">
+      <a href="#" class="reveal reveal-delay-4 lift-card group flex flex-col items-center gap-3 p-4 rounded-2xl transition-all">
         <div class="w-14 h-14 rounded-2xl bg-brand-50 group-hover:bg-brand-100 flex items-center justify-center transition-colors">
           <svg viewBox="0 0 24 24" fill="none" stroke="#30accf" stroke-width="1.5" class="w-7 h-7">
             <path d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
@@ -515,7 +566,7 @@
         <span class="text-xs font-bold text-gray-700 text-center leading-tight">Curățenie birouri</span>
       </a>
 
-      <a href="#lampa-uv" class="reveal reveal-delay-4 group flex flex-col items-center gap-3 p-4 rounded-2xl border border-brand-200 bg-brand-50 hover:border-brand-400 hover:shadow-md transition-all">
+      <a href="#lampa-uv" class="reveal reveal-delay-4 lift-card group flex flex-col items-center gap-3 p-4 rounded-2xl border-brand-300 bg-brand-50 transition-all">
         <div class="w-14 h-14 rounded-2xl bg-brand-100 group-hover:bg-brand-200 flex items-center justify-center transition-colors">
           <svg viewBox="0 0 24 24" fill="none" stroke="#30accf" stroke-width="1.5" class="w-7 h-7">
             <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
@@ -532,7 +583,7 @@
 <!-- ─────────────────────────────────────────
      SERVICES DETAIL
 ───────────────────────────────────────── -->
-<section class="py-16 bg-gray-50">
+<section class="py-16 bg-gray-50 section-sheen">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
     <div class="text-center mb-10 reveal">
@@ -549,13 +600,13 @@
       <button onclick="selectTab(2)" class="tab-pill px-4 py-2 rounded-full text-sm font-bold border-2 border-gray-200 text-gray-600 transition-all">Curățenie post-reparație</button>
     </div>
 
-    <div class="flex flex-col lg:flex-row items-center gap-12">
+    <div class="lift-card rounded-[2rem] p-6 sm:p-8 lg:p-10 flex flex-col lg:flex-row items-center gap-12">
       <!-- Image -->
       <div class="flex-1 w-full">
         <img
-          src="img/mon-safe-home.jpg"
+          src="img/Gemini_Generated_Image_vhph6tvhph6tvhph.png"
           alt="Curățenie sigură pentru casa și familia ta — Mon Cleaning"
-          class="rounded-2xl w-full shadow-lg"
+          class="rounded-3xl w-full shadow-xl"
         />
       </div>
 
@@ -594,7 +645,7 @@
             <span class="text-gray-700 text-sm">Scoaterea gunoiului și igienizarea coșurilor</span>
           </li>
         </ul>
-        <a href="#pret" class="inline-block bg-brand-500 hover:bg-brand-600 text-white font-bold px-6 py-3 rounded-full text-sm transition-colors">
+        <a href="#pret" class="inline-block bg-brand-900 hover:bg-brand-700 text-white font-bold px-6 py-3 rounded-full text-sm transition-colors shadow-lg shadow-brand-200">
           Calculați prețul →
         </a>
       </div>
@@ -606,7 +657,7 @@
 <!-- ─────────────────────────────────────────
      GOOGLE REVIEWS
 ───────────────────────────────────────── -->
-<section id="recenzii" class="py-16 bg-white">
+<section id="recenzii" class="py-16 bg-white section-sheen">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
     <div class="text-center mb-10 reveal">
@@ -628,7 +679,7 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
 
       <!-- Review 1 -->
-      <div class="reveal reveal-delay-1 bg-gray-50 rounded-2xl p-6 border border-gray-100">
+      <div class="reveal reveal-delay-1 lift-card rounded-2xl p-6">
         <div class="flex items-center gap-3 mb-4">
           <div class="w-10 h-10 rounded-full bg-brand-500 flex items-center justify-center text-white font-black text-sm flex-shrink-0">LG</div>
           <div>
@@ -646,7 +697,7 @@
       </div>
 
       <!-- Review 2 -->
-      <div class="reveal reveal-delay-2 bg-gray-50 rounded-2xl p-6 border border-gray-100">
+      <div class="reveal reveal-delay-2 lift-card rounded-2xl p-6">
         <div class="flex items-center gap-3 mb-4">
           <div class="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center text-white font-black text-sm flex-shrink-0">IM</div>
           <div>
@@ -664,7 +715,7 @@
       </div>
 
       <!-- Review 3 -->
-      <div class="reveal reveal-delay-3 bg-gray-50 rounded-2xl p-6 border border-gray-100">
+      <div class="reveal reveal-delay-3 lift-card rounded-2xl p-6">
         <div class="flex items-center gap-3 mb-4">
           <div class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-white font-black text-sm flex-shrink-0">PK</div>
           <div>
@@ -700,9 +751,9 @@
       <!-- Image -->
       <div class="flex-1 w-full reveal-left">
         <img
-          src="img/mon-services.jpg"
+          src="img/Gemini_Generated_Image_qmte89qmte89qmte.png"
           alt="Curățenie profesională pentru casa sau biroul tău — Mon Cleaning"
-          class="rounded-2xl w-full max-w-md mx-auto shadow-2xl"
+          class="rounded-3xl w-full max-w-md mx-auto shadow-2xl"
         />
       </div>
 
@@ -727,7 +778,7 @@
 <!-- ─────────────────────────────────────────
      HOW WE WORK
 ───────────────────────────────────────── -->
-<section id="cum-lucram" class="py-16 bg-white">
+<section id="cum-lucram" class="py-16 bg-white section-sheen">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
     <div class="text-center mb-12">
@@ -738,7 +789,7 @@
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
 
       <!-- Step 1 -->
-      <div class="reveal reveal-delay-1 relative flex flex-col items-center text-center step-line">
+      <div class="reveal reveal-delay-1 lift-card relative flex flex-col items-center text-center step-line rounded-3xl p-5">
         <div class="relative mb-4">
           <div class="w-16 h-16 rounded-2xl bg-brand-50 flex items-center justify-center">
             <svg viewBox="0 0 24 24" fill="none" stroke="#30accf" stroke-width="1.5" class="w-8 h-8">
@@ -752,7 +803,7 @@
       </div>
 
       <!-- Step 2 -->
-      <div class="reveal reveal-delay-2 relative flex flex-col items-center text-center step-line">
+      <div class="reveal reveal-delay-2 lift-card relative flex flex-col items-center text-center step-line rounded-3xl p-5">
         <div class="relative mb-4">
           <div class="w-16 h-16 rounded-2xl bg-brand-50 flex items-center justify-center">
             <svg viewBox="0 0 24 24" fill="none" stroke="#30accf" stroke-width="1.5" class="w-8 h-8">
@@ -766,7 +817,7 @@
       </div>
 
       <!-- Step 3 -->
-      <div class="reveal reveal-delay-3 relative flex flex-col items-center text-center step-line">
+      <div class="reveal reveal-delay-3 lift-card relative flex flex-col items-center text-center step-line rounded-3xl p-5">
         <div class="relative mb-4">
           <div class="w-16 h-16 rounded-2xl bg-brand-50 flex items-center justify-center">
             <svg viewBox="0 0 24 24" fill="none" stroke="#30accf" stroke-width="1.5" class="w-8 h-8">
@@ -781,7 +832,7 @@
       </div>
 
       <!-- Step 4 -->
-      <div class="reveal reveal-delay-4 relative flex flex-col items-center text-center">
+      <div class="reveal reveal-delay-4 lift-card relative flex flex-col items-center text-center rounded-3xl p-5">
         <div class="relative mb-4">
           <div class="w-16 h-16 rounded-2xl bg-brand-50 flex items-center justify-center">
             <svg viewBox="0 0 24 24" fill="none" stroke="#30accf" stroke-width="1.5" class="w-8 h-8">
@@ -802,18 +853,34 @@
 <!-- ─────────────────────────────────────────
      ABOUT COMPANY
 ───────────────────────────────────────── -->
-<section class="py-16 bg-gray-50">
+<section class="py-16 bg-gray-50 section-sheen">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="max-w-4xl">
-      <h2 class="text-2xl lg:text-3xl font-black text-gray-900 mb-6">
-        Companie de curățenie profesională în Moldova<br>
-        pentru apartamente, case și birouri
-      </h2>
-      <div class="space-y-4 text-gray-600 text-sm leading-loose">
-        <p>Mon Cleaning oferă servicii profesionale de curățenie în Republica Moldova cu echipamente de ultimă generație și produse ecologice certificate. Realizăm curățenie generală, curățenie după reparație, curățare chimică a mobilierului și alte tipuri de curățenie pentru birouri.</p>
-        <p>Echipa noastră utilizează eficient echipamente și soluții sigure pentru curățenie, protejând sănătatea dumneavoastră și a familiei. Lucrăm cu apartamente, case, birouri, magazine și alte tipuri de spații comerciale și rezidențiale.</p>
-        <p>Curățenia generală este o curățenie profundă a spațiului. Dacă sunteți în căutare de o companie profesionistă pentru curățenie în Moldova, ați ajuns la locul potrivit. Efectuăm curățenie chimică pentru canapele, saltele, fotolii și alte tipuri de mobilier tapițat.</p>
-        <p>Mon Cleaning deservește deja peste 1000 de clienți și am construit un sistem eficient de curățenie. Puteți comanda curățenie pentru apartament, casă sau birou și în câteva minute primiți o estimație a costului direct pe site.</p>
+    <div class="grid lg:grid-cols-[1.05fr_.95fr] gap-10 items-start">
+      <div class="lift-card rounded-[2rem] p-8 sm:p-10">
+        <h2 class="text-2xl lg:text-3xl font-black text-gray-900 mb-6">
+          Companie de curățenie profesională în Moldova<br>
+          pentru apartamente, case și birouri
+        </h2>
+        <div class="space-y-4 text-gray-600 text-sm leading-loose">
+          <p>Mon Cleaning oferă servicii profesionale de curățenie în Republica Moldova cu echipamente de ultimă generație și produse ecologice certificate. Realizăm curățenie generală, curățenie după reparație, curățare chimică a mobilierului și alte tipuri de curățenie pentru birouri.</p>
+          <p>Echipa noastră utilizează eficient echipamente și soluții sigure pentru curățenie, protejând sănătatea dumneavoastră și a familiei. Lucrăm cu apartamente, case, birouri, magazine și alte tipuri de spații comerciale și rezidențiale.</p>
+          <p>Curățenia generală este o curățenie profundă a spațiului. Dacă sunteți în căutare de o companie profesionistă pentru curățenie în Moldova, ați ajuns la locul potrivit. Efectuăm curățenie chimică pentru canapele, saltele, fotolii și alte tipuri de mobilier tapițat.</p>
+          <p>Mon Cleaning deservește deja peste 1000 de clienți și am construit un sistem eficient de curățenie. Puteți comanda curățenie pentru apartament, casă sau birou și în câteva minute primiți o estimație a costului direct pe site.</p>
+        </div>
+      </div>
+
+      <div class="space-y-4">
+        <div class="proof-card h-64 reveal-right">
+          <img src="img/505546602_122097591632907786_2361728256503039689_n.jpg" alt="Echipa Mon Cleaning la lucru" />
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <a href="img/626418325_17873724822504189_8004793458459127900_n.jpg" target="_blank" rel="noopener" class="proof-card proof-full h-44 reveal reveal-delay-1 block">
+            <img src="img/626418325_17873724822504189_8004793458459127900_n.jpg" alt="Înainte și după curățenie la cuptor" />
+          </a>
+          <a href="img/670286649_17884598931504189_7540825973237101646_n.jpg" target="_blank" rel="noopener" class="proof-card proof-full h-44 reveal reveal-delay-2 block">
+            <img src="img/670286649_17884598931504189_7540825973237101646_n.jpg" alt="Rezultat înainte și după pentru mobilier" />
+          </a>
+        </div>
       </div>
     </div>
   </div>
@@ -983,21 +1050,33 @@
 <!-- ─────────────────────────────────────────
      PRICE FORM
 ───────────────────────────────────────── -->
-<section id="pret" class="py-16 bg-gray-50">
+<section id="pret" class="py-16 bg-gray-50 section-sheen">
   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
 
     <div class="text-center mb-8 reveal">
       <h2 class="text-2xl lg:text-3xl font-black text-gray-900 mb-2">Prețuri & Calculator</h2>
-      <p class="text-gray-400 text-sm">Tarife orientative și calcul gratuit al costului</p>
+      <p class="text-gray-400 text-sm">Exemple reale de lucrări și calcul gratuit al costului</p>
     </div>
 
-    <!-- Price list image -->
-    <div class="reveal mb-10">
+    <!-- Portfolio image -->
+    <div class="reveal mb-10 proof-card max-w-lg mx-auto">
       <img
-        src="img/mon-price-list.jpg"
-        alt="Lista de prețuri Mon Cleaning"
-        class="w-full max-w-lg mx-auto block rounded-3xl shadow-xl"
+        src="img/505546602_122097591632907786_2361728256503039689_n.jpg"
+        alt="Servicii Mon Cleaning"
+        class="w-full block"
       />
+    </div>
+
+    <div class="grid sm:grid-cols-3 gap-4 mb-10">
+      <a href="img/626418325_17873724822504189_8004793458459127900_n.jpg" target="_blank" rel="noopener" class="proof-card proof-full h-52 reveal reveal-delay-1 block">
+        <img src="img/626418325_17873724822504189_8004793458459127900_n.jpg" alt="Înainte și după în colțuri greu accesibile" />
+      </a>
+      <a href="img/670286649_17884598931504189_7540825973237101646_n.jpg" target="_blank" rel="noopener" class="proof-card proof-full h-52 reveal reveal-delay-2 block">
+        <img src="img/670286649_17884598931504189_7540825973237101646_n.jpg" alt="Înainte și după curățenie pe mobilier" />
+      </a>
+      <a href="img/670485538_17884598940504189_1481951603385470555_n.jpg" target="_blank" rel="noopener" class="proof-card proof-full h-52 reveal reveal-delay-3 block">
+        <img src="img/670485538_17884598940504189_1481951603385470555_n.jpg" alt="Înainte și după curățenie pe pardoseală" />
+      </a>
     </div>
 
     <div class="text-center mb-8 reveal">
@@ -1005,7 +1084,7 @@
       <p class="text-gray-400 text-sm">Completați formularul și primiți calculul gratuit</p>
     </div>
 
-    <div class="bg-white rounded-3xl shadow-xl p-8 reveal">
+    <div class="bg-white rounded-3xl shadow-xl p-8 reveal lift-card">
       <form class="space-y-4" onsubmit="handleForm(event)">
 
         <!-- Name -->
@@ -1098,7 +1177,7 @@
 
     <!-- Logo -->
     <div class="flex items-center gap-2 mb-6">
-      <img src="img/mon-cleaning-logo.jpg" alt="Mon Cleaning" class="h-14 w-14 rounded-full object-cover" />
+      <img src="img/logo.jpg" alt="Mon Cleaning" class="h-14 w-14 rounded-xl object-contain bg-white p-1 border border-brand-100" />
       <span class="font-extrabold text-lg text-white leading-none">Mon<span class="text-brand-400"> Cleaning</span></span>
     </div>
 
