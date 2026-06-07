@@ -10,12 +10,15 @@
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,800;9..144,900&family=Manrope:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <script>
     tailwind.config = {
       theme: {
         extend: {
-          fontFamily: { sans: ['Nunito', 'sans-serif'] },
+          fontFamily: {
+            sans: ['Manrope', 'sans-serif'],
+            display: ['Fraunces', 'serif']
+          },
           colors: {
             brand: {
               50:  '#f0fbfe',
@@ -25,6 +28,11 @@
               500: '#62c7e4',
               600: '#30accf',
               700: '#1689a8',
+              900: '#083b4a',
+            },
+            accent: {
+              400: '#ff9b8f',
+              500: '#ff7a68',
             }
           }
         }
@@ -33,6 +41,226 @@
   </script>
   <style>
     html { scroll-behavior: smooth; }
+
+    body {
+      background: #f7fbfc;
+    }
+
+    .brand-word {
+      font-weight: 900;
+      letter-spacing: 0;
+    }
+
+    .hero-clean {
+      position: relative;
+      isolation: isolate;
+      min-height: min(820px, calc(100vh - 8px));
+      background:
+        linear-gradient(118deg, rgba(255,255,255,.96) 0 40%, transparent 40.2%),
+        linear-gradient(145deg, #f3fbfd 0%, #dff6fb 46%, #ffffff 46.4% 100%);
+    }
+
+    .hero-clean::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      background-image:
+        linear-gradient(rgba(8,59,74,.055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(8,59,74,.055) 1px, transparent 1px);
+      background-size: 54px 54px;
+      mask-image: linear-gradient(90deg, black 0 58%, transparent 86%);
+    }
+
+    .hero-clean::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: min(42vw, 560px);
+      z-index: -1;
+      background:
+        repeating-linear-gradient(135deg, rgba(255,255,255,.42) 0 10px, transparent 10px 22px),
+        linear-gradient(180deg, rgba(98,199,228,.42), rgba(22,137,168,.1));
+      clip-path: polygon(18% 0, 100% 0, 100% 100%, 0 100%);
+    }
+
+    .hero-kicker {
+      width: fit-content;
+      border: 1px solid rgba(48,172,207,.28);
+      background: rgba(255,255,255,.72);
+      box-shadow: 0 16px 48px rgba(8,59,74,.08);
+      backdrop-filter: blur(18px);
+    }
+
+    .hero-title {
+      color: #0f172a;
+      text-wrap: balance;
+    }
+
+    .hero-title .ink {
+      position: relative;
+      color: #1689a8;
+      white-space: nowrap;
+    }
+
+    .hero-title .ink::after {
+      content: '';
+      position: absolute;
+      left: .04em;
+      right: -.04em;
+      bottom: .08em;
+      height: .16em;
+      z-index: -1;
+      background: #bdebf6;
+      transform: skewX(-12deg);
+    }
+
+    .hero-visual {
+      position: relative;
+      min-height: 520px;
+    }
+
+    .hero-slab {
+      position: absolute;
+      inset: 0;
+      border-radius: 38px;
+      background:
+        linear-gradient(145deg, rgba(255,255,255,.92), rgba(240,251,254,.7)),
+        radial-gradient(circle at 25% 20%, rgba(255,255,255,.9), transparent 26%);
+      border: 1px solid rgba(255,255,255,.92);
+      box-shadow: 0 28px 80px rgba(8,59,74,.16);
+      overflow: hidden;
+    }
+
+    .hero-slab::before {
+      content: '';
+      position: absolute;
+      inset: 28px;
+      border: 1px solid rgba(48,172,207,.22);
+      border-radius: 28px;
+    }
+
+    .hero-slab::after {
+      content: '';
+      position: absolute;
+      right: -88px;
+      top: -42px;
+      width: 310px;
+      height: 720px;
+      background: linear-gradient(180deg, rgba(98,199,228,.82), rgba(255,255,255,.28));
+      transform: rotate(22deg);
+    }
+
+    .hero-logo-medallion {
+      position: relative;
+      z-index: 2;
+      width: min(58vw, 265px);
+      aspect-ratio: 1;
+      margin: 56px auto 0;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 24px 70px rgba(22,137,168,.22);
+      display: grid;
+      place-items: center;
+    }
+
+    .hero-logo-medallion img {
+      width: 76%;
+      height: 76%;
+      object-fit: contain;
+      border-radius: 50%;
+    }
+
+    .service-ticket {
+      position: absolute;
+      left: 34px;
+      right: 34px;
+      bottom: 34px;
+      z-index: 3;
+      border-radius: 26px;
+      background: rgba(8,59,74,.92);
+      color: white;
+      box-shadow: 0 20px 54px rgba(8,59,74,.22);
+      overflow: hidden;
+    }
+
+    .service-ticket::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.08), transparent);
+      transform: translateX(-100%);
+      animation: ticketSheen 4.8s ease-in-out infinite;
+    }
+
+    @keyframes ticketSheen {
+      0%, 55% { transform: translateX(-100%); }
+      80%, 100% { transform: translateX(100%); }
+    }
+
+    .spark-mark {
+      position: absolute;
+      z-index: 4;
+      width: 74px;
+      height: 74px;
+      right: 22px;
+      top: 132px;
+      color: #ff7a68;
+      filter: drop-shadow(0 18px 28px rgba(255,122,104,.22));
+      animation: floatSpark 5.5s ease-in-out infinite;
+    }
+
+    @keyframes floatSpark {
+      0%, 100% { transform: translateY(0) rotate(-7deg); }
+      50% { transform: translateY(-14px) rotate(6deg); }
+    }
+
+    .hero-stat-card {
+      border: 1px solid rgba(48,172,207,.2);
+      background: rgba(255,255,255,.82);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 16px 44px rgba(8,59,74,.08);
+    }
+
+    @media (max-width: 1024px) {
+      .hero-clean {
+        min-height: auto;
+      }
+
+      .hero-clean::after {
+        width: 100%;
+        clip-path: polygon(0 58%, 100% 48%, 100% 100%, 0 100%);
+      }
+
+      .hero-visual {
+        min-height: 500px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero-clean::before {
+        mask-image: linear-gradient(180deg, black 0 72%, transparent 96%);
+      }
+
+      .hero-visual {
+        min-height: 450px;
+      }
+
+      .service-ticket {
+        left: 18px;
+        right: 18px;
+        bottom: 24px;
+      }
+
+      .spark-mark {
+        right: 14px;
+        top: 116px;
+        width: 58px;
+        height: 58px;
+      }
+    }
 
     .faq-body {
       max-height: 0;
@@ -116,13 +344,13 @@
 <!-- ─────────────────────────────────────────
      NAVIGATION
 ───────────────────────────────────────── -->
-<header class="fixed top-0 inset-x-0 z-50 bg-white shadow-sm">
+<header class="fixed top-0 inset-x-0 z-50 bg-white/85 backdrop-blur-xl border-b border-white/70 shadow-sm">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
 
     <!-- Logo -->
     <a href="#" class="flex items-center gap-1 flex-shrink-0">
       <img src="img/mon-cleaning-logo.jpg" alt="Mon Cleaning" class="h-11 w-11 rounded-full object-cover" />
-      <span class="font-extrabold text-lg leading-none ml-1">Mon<span class="text-brand-500"> Cleaning</span></span>
+      <span class="brand-word text-lg leading-none ml-1">Mon<span class="text-brand-500"> Cleaning</span></span>
     </a>
 
     <!-- Nav links -->
@@ -134,7 +362,7 @@
     </nav>
 
     <!-- CTA -->
-    <a href="#pret" class="bg-brand-500 hover:bg-brand-600 transition-colors text-white text-sm font-bold px-5 py-2.5 rounded-full shadow-sm shadow-brand-200">
+    <a href="#pret" class="bg-brand-500 hover:bg-brand-600 transition-colors text-white text-sm font-extrabold px-5 py-2.5 rounded-full shadow-lg shadow-brand-200">
       Obțineți prețul
     </a>
   </div>
@@ -144,84 +372,86 @@
 <!-- ─────────────────────────────────────────
      HERO
 ───────────────────────────────────────── -->
-<section class="pt-24 pb-10 bg-gradient-to-br from-brand-50 via-white to-white overflow-hidden">
+<section class="hero-clean pt-28 pb-14 overflow-hidden">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
+    <div class="grid lg:grid-cols-[1.04fr_.96fr] items-center gap-10 lg:gap-16">
 
       <!-- Left content -->
-      <div class="flex-1 max-w-xl reveal-left visible">
-        <!-- Badge -->
-        <div class="inline-flex items-center gap-2 bg-white border border-brand-200 rounded-full px-4 py-1.5 text-xs font-bold text-brand-700 mb-5 shadow-sm">
-          <span class="w-2 h-2 rounded-full bg-brand-500 animate-pulse"></span>
-          Activ pe rezervare
+      <div class="max-w-2xl reveal-left visible">
+        <div class="hero-kicker inline-flex items-center gap-3 rounded-full px-4 py-2 text-xs font-extrabold text-brand-900 mb-6">
+          <span class="grid h-6 w-6 place-items-center rounded-full bg-brand-500 text-white">
+            <svg viewBox="0 0 20 20" fill="currentColor" class="h-3.5 w-3.5"><path d="M10 2.5l1.35 4.15h4.36l-3.53 2.56 1.35 4.15L10 10.8 6.47 13.36l1.35-4.15-3.53-2.56h4.36L10 2.5z"/></svg>
+          </span>
+          curățenie programată, fără haos
         </div>
 
-        <h1 class="text-4xl lg:text-5xl font-black leading-tight text-gray-900 mb-5">
-          Companie de<br>
-          <span class="text-brand-500">curățenie</span><br>
-          în Moldova
+        <h1 class="hero-title font-display text-[3.4rem] leading-[.92] sm:text-6xl lg:text-7xl font-black mb-6">
+          Casa ta merită o <span class="ink">resetare</span> proaspătă.
         </h1>
 
-        <p class="text-gray-500 text-sm leading-relaxed mb-7 max-w-md">
-          Realizăm orice tip de curățenie la domiciliu și în spații comerciale. Curățenie generală, după reparație, curățare chimică a mobilierului și alte tipuri — rapid, profesionist, garantat.
+        <p class="text-slate-600 text-base sm:text-lg leading-8 mb-8 max-w-xl">
+          Mon Cleaning transformă curățenia într-un serviciu calm, previzibil și bine coordonat pentru apartamente, case și birouri din Moldova.
         </p>
 
-        <!-- Stats row -->
-        <div class="flex flex-wrap gap-6 mb-8">
-          <div>
-            <div class="text-2xl font-black text-brand-500">1000+</div>
-            <div class="text-xs text-gray-500 font-medium">Clienți<br>mulțumiți</div>
-          </div>
-          <div class="w-px bg-gray-200"></div>
-          <div>
-            <div class="text-2xl font-black text-brand-500">7 ani</div>
-            <div class="text-xs text-gray-500 font-medium">Pe<br>piața</div>
-          </div>
-          <div class="w-px bg-gray-200"></div>
-          <div>
-            <div class="text-2xl font-black text-brand-500">Pro</div>
-            <div class="text-xs text-gray-500 font-medium">Echipă<br>profesionistă</div>
-          </div>
-          <div class="w-px bg-gray-200"></div>
-          <div>
-            <div class="text-2xl font-black text-brand-500">100%</div>
-            <div class="text-xs text-gray-500 font-medium">Garanție<br>rezultat</div>
-          </div>
-        </div>
-
-        <!-- Buttons -->
-        <div class="flex flex-wrap gap-3">
+        <div class="flex flex-wrap gap-3 mb-8">
           <a href="#calculator"
-             class="bg-brand-500 hover:bg-brand-600 text-white font-bold px-6 py-3 rounded-full text-sm transition-colors shadow-lg shadow-brand-200">
-            CALCULAȚI PREȚUL →
+             class="bg-brand-900 hover:bg-brand-700 text-white font-extrabold px-7 py-4 rounded-full text-sm transition-colors shadow-2xl shadow-brand-200">
+            Calculează prețul
           </a>
           <a href="tel:+37368144622"
-             class="border-2 border-gray-200 hover:border-brand-500 text-gray-700 font-bold px-6 py-3 rounded-full text-sm transition-colors">
-            Sunați-ne acum
+             class="bg-white/80 border border-brand-200 hover:border-brand-500 text-brand-900 font-extrabold px-7 py-4 rounded-full text-sm transition-colors shadow-sm">
+            068 144 622
           </a>
+        </div>
+
+        <div class="grid grid-cols-3 gap-3 max-w-lg">
+          <div class="hero-stat-card rounded-2xl px-4 py-4">
+            <div class="text-2xl font-black text-brand-700">1000+</div>
+            <div class="text-[11px] text-slate-500 font-bold leading-tight">clienți mulțumiți</div>
+          </div>
+          <div class="hero-stat-card rounded-2xl px-4 py-4">
+            <div class="text-2xl font-black text-brand-700">7 ani</div>
+            <div class="text-[11px] text-slate-500 font-bold leading-tight">experiență locală</div>
+          </div>
+          <div class="hero-stat-card rounded-2xl px-4 py-4">
+            <div class="text-2xl font-black text-brand-700">100%</div>
+            <div class="text-[11px] text-slate-500 font-bold leading-tight">rezultat verificat</div>
+          </div>
         </div>
       </div>
 
-      <!-- Right image -->
-      <div class="flex-1 flex justify-center lg:justify-end relative reveal-right visible">
-        <div class="relative w-full max-w-md">
-          <!-- decorative circle -->
-          <div class="absolute inset-6 rounded-full bg-brand-100 -z-10"></div>
-          <img
-            src="img/mon-hero.jpg"
-            alt="Specialist curățenie Mon Cleaning"
-            class="relative w-full rounded-3xl shadow-xl object-cover"
-          />
-          <!-- floating card -->
-          <div class="absolute -bottom-5 -left-4 bg-white rounded-2xl shadow-2xl px-4 py-3 flex items-center gap-3 z-10">
-            <div class="w-10 h-10 rounded-xl bg-brand-100 flex items-center justify-center flex-shrink-0">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#30accf" stroke-width="2" class="w-5 h-5">
-                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-              </svg>
-            </div>
+      <!-- Right visual -->
+      <div class="hero-visual reveal-right visible">
+        <div class="hero-slab"></div>
+        <svg class="spark-mark" viewBox="0 0 80 80" fill="none" aria-hidden="true">
+          <path d="M40 5l7.5 24.5L72 40l-24.5 10.5L40 75 29.5 50.5 5 40l24.5-10.5L40 5z" fill="currentColor"/>
+          <path d="M57 8l3.5 10.5L71 22l-10.5 3.5L57 36l-3.5-10.5L43 22l10.5-3.5L57 8z" fill="#30accf"/>
+        </svg>
+
+        <div class="hero-logo-medallion">
+          <img src="img/mon-cleaning-logo.jpg" alt="Mon Cleaning" />
+        </div>
+
+        <div class="service-ticket p-5 sm:p-6">
+          <div class="flex items-start justify-between gap-4 mb-5">
             <div>
-              <div class="text-[10px] text-gray-400 font-medium">Garanție</div>
-              <div class="text-sm font-extrabold text-gray-900">Calitate asigurată</div>
+              <div class="text-xs font-bold uppercase text-brand-200">Plan de curățenie</div>
+              <div class="font-display text-2xl font-black leading-tight">astăzi, 09:00</div>
+            </div>
+            <div class="rounded-full bg-accent-500 px-3 py-1 text-xs font-black text-white">Confirmat</div>
+          </div>
+          <div class="grid grid-cols-3 gap-2 text-center">
+            <div class="rounded-2xl bg-white/10 p-3">
+              <div class="text-lg font-black">3h</div>
+              <div class="text-[10px] text-brand-100 font-bold">durată</div>
+            </div>
+            <div class="rounded-2xl bg-white/10 p-3">
+              <div class="text-lg font-black">eco</div>
+              <div class="text-[10px] text-brand-100 font-bold">soluții</div>
+            </div>
+            <div class="rounded-2xl bg-white/10 p-3">
+              <div class="text-lg font-black">pro</div>
+              <div class="text-[10px] text-brand-100 font-bold">echipă</div>
             </div>
           </div>
         </div>
